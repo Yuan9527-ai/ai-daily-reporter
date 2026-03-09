@@ -1,0 +1,27 @@
+{
+  "name": "ai-daily-reporter",
+  "version": "1.0.0",
+  "description": "AI每日报告生成器 - 自动收集AI资讯、天气、日程，生成每日简报",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "build": "tsc",
+    "generate": "tsx src/generate.ts",
+    "test": "jest"
+  },
+  "keywords": ["ai", "daily-report", "automation", "newsletter"],
+  "author": "Yuan9527-ai",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0-rc.12",
+    "dotenv": "^16.3.1",
+    "node-cron": "^3.0.3",
+    "openai": "^4.20.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0",
+    "tsx": "^4.6.0"
+  }
+}
