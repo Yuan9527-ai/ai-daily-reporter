@@ -7,6 +7,7 @@
     "dev": "tsx src/index.ts",
     "build": "tsc",
     "generate": "tsx src/generate.ts",
+    "track": "tsx src/ai-tracker.ts",
     "test": "jest"
   },
   "keywords": ["ai", "daily-report", "automation", "newsletter"],
