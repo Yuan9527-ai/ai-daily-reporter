@@ -35,12 +35,14 @@ jobs:
           name: daily-report
           path: daily-report-*.md
       
-      - name: Send to Feishu (optional)
-        if: ${{ secrets.FEISHU_WEBHOOK_URL }}
+      - name: Send to Feishu
+        if: env.FEISHU_WEBHOOK_URL != ''
         env:
           FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
         run: |
-          REPORT_FILE=$(ls daily-report-*.md | head -1)
-          curl -X POST "${FEISHU_WEBHOOK_URL}" \
-            -H "Content-Type: application/json" \
-            -d "{\"msg_type\":\"text\",\"content\":{\"text\":\"$(cat $REPORT_FILE | sed ':a;N;$!ba;s/\n/\\n/g')\"}}"
+          if [ -n "$FEISHU_WEBHOOK_URL" ]; then
+            REPORT_FILE=$(ls daily-report-*.md | head -1)
+            curl -X POST "${FEISHU_WEBHOOK_URL}" \
+              -H "Content-Type: application/json" \
+              -d "{\"msg_type\":\"text\",\"content\":{\"text\":\"$(cat $REPORT_FILE | sed ':a;N;$!ba;s/\n/\\n/g')\"}}"
+          fi
